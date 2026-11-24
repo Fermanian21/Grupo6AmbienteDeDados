@@ -35,10 +35,12 @@ O banco de dados centraliza e automatiza o controle operacional e gerencial do e
 O modelo foi projetado respeitando a **3ª Forma Normal (3FN)**, eliminando redundâncias, separando entidades associativas para relacionamentos `N:N` (como `produto_fornecedor`) e decompondo cabeçalhos e itens tanto em compras (`compra` / `item_compra`) quanto em vendas (`venda` / `item_venda`).
 
 ### Diagrama de Entidade e Relacionamento (DER)
-![DER Grupo 6](DER-GRUPO6.drawio.jpg)
+![DER Grupo 6](<img width="2072" height="1137" alt="DER-GRUPO6 drawio" src="https://github.com/user-attachments/assets/a6eda738-5dc0-49fc-beec-bc2a8d232ac9" />
+)
 
 ### Modelo de Entidade e Relacionamento (MER)
-![MER Grupo 6](MER-GRUPO6.drawio_2.jpg)
+![MER Grupo 6](<img width="972" height="1052" alt="MER-GRUPO6 drawio" src="https://github.com/user-attachments/assets/928077b9-c077-44a4-b443-8c0969acdfa8" />
+)
 
 ---
 
