@@ -12,9 +12,9 @@ Repositório do **Grupo 6** referente ao trabalho final da disciplina de **Ambie
 
 ## 📌 Sobre o Cenário 6
 O projeto modela e implementa o banco de dados de uma loja virtual voltada para a venda de artigos regionais (como colchas de cama, bordados e artesanato) gerenciada por **Cristina**. O sistema contempla:
-* **Cadastro e Controle de Estoque de Produtos:** nome, descrição, tipo, cor, características, valor de custo, percentual de lucro, quantidade em estoque, quantidade mínima alvo e múltiplas fotos (foto principal e complementares)[cite: 12, 20].
-* **Gestão de Fornecedores e Compras:** cadastro de fornecedores (nome, telefones, e-mails, endereços e itens fornecidos) e registro de compras/aquisições com data da compra, data de recebimento, quantidades e valores unitários de custo[cite: 12, 20].
-* **Clientes e Vendas:** cadastro de clientes (CPF, nome, telefones, preferência por mensagens promocionais e endereços com marcação de endereço padrão de entrega), formas de pagamento e registro de vendas e itens vendidos[cite: 12, 20].
+* **Cadastro e Controle de Estoque de Produtos:** nome, descrição, tipo, cor, características, valor de custo, percentual de lucro, quantidade em estoque, quantidade mínima alvo e múltiplas fotos (foto principal e complementares).
+* **Gestão de Fornecedores e Compras:** cadastro de fornecedores (nome, telefones, e-mails, endereços e itens fornecidos) e registro de compras/aquisições com data da compra, data de recebimento, quantidades e valores unitários de custo.
+* **Clientes e Vendas:** cadastro de clientes (CPF, nome, telefones, preferência por mensagens promocionais e endereços com marcação de endereço padrão de entrega), formas de pagamento e registro de vendas e itens vendidos.
 
 ---
 
