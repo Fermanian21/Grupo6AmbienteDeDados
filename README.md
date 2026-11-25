@@ -48,13 +48,13 @@ O modelo foi projetado respeitando a **3ª Forma Normal (3FN)**, eliminando redu
 
 ```text
 Grupo6AmbienteDeDados/
-├── diagramas/
-│   ├── DER-GRUPO6.drawio.jpg          # Diagrama Conceitual (Entidade e Relacionamento)
-│   └── MER-GRUPO6.drawio_2.jpg        # Modelo Lógico Relacional (Tabelas, PKs e FKs)
+├── DER-GRUPO6.drawio.png              # Diagrama Conceitual (Entidade e Relacionamento)
+├── MER-GRUPO6.drawio.png              # Modelo Lógico Relacional (Tabelas, PKs e FKs)
 ├── scripts_banco/
 │   ├── Bancos_GRUPO6.sql              # DDL: Criação do schema 'loja_cenario6' e das 15 tabelas
 │   ├── Foreign_key_GRUPO6.sql         # DDL: Criação separada de todas as Chaves Estrangeiras (FKs)
-│   └── carga_dados_GRUPO6.sql         # DML: Massa de dados estruturada (CRUD, Mães e Movimentação)
+│   ├── carga_dados_GRUPO6.sql         # DML: Massa de dados estruturada (CRUD, Mães e Movimentação)
+│   └── relatorios_GRUPO6.sql          # DQL: Consultas SQL dos 6 relatórios do Cenário 6
 └── README.md                          # Documentação técnica e guia de execução
 ```
 
@@ -74,10 +74,15 @@ Para viabilizar consultas analíticas realistas e testar todos os relatórios ex
 * **Tabelas Mães / Principais (40 a 50 registros por tabela):**
   * `produto` (40 registros, incluindo 8 SKUs com estoque abaixo do mínimo alvo para validar alertas de reposição)
   * `cliente` (45 registros)
-  * `cliente_telefone`, `endereco_cliente`, `foto_produto` e `produto_fornecedor` (50 registros cada)
+  * `cliente_telefone`, `endereco_cliente` e `foto_produto` (50 registros cada)
+  * `produto_fornecedor` (235 registros: todo produto comprado de um fornecedor consta como item que ele vende)
 * **Tabelas de Movimentação (1.000 registros totais):**
   * `compra` (150 registros) e `item_compra` (300 registros)
   * `venda` (200 registros) e `item_venda` (350 registros)
+* **Ajuste automático de datas:** ao final da carga, as datas de vendas e compras são deslocadas para que a venda mais recente seja sempre o dia anterior à execução, preservando os intervalos entre elas (inclusive o prazo de recebimento das compras). Assim, os relatórios de "últimos 30 dias" e "últimos 12 meses" sempre retornam dados, em qualquer data em que o banco for carregado.
+
+### 3. Relatórios (`relatorios_GRUPO6.sql`)
+Contém as 6 consultas SQL exigidas pelo cenário, descritas na seção [Relatórios Gerenciais](#-relatórios-gerenciais-contemplados-pelo-cenário-6).
 
 ---
 
@@ -104,7 +109,8 @@ cd Grupo6AmbienteDeDados
 2. Abra e execute o arquivo **`scripts_banco/Bancos_GRUPO6.sql`** (cria o banco `loja_cenario6` e todas as 15 tabelas).
 3. Abra e execute o arquivo **`scripts_banco/Foreign_key_GRUPO6.sql`** (vincula todas as chaves estrangeiras).
 4. Abra e execute o arquivo **`scripts_banco/carga_dados_GRUPO6.sql`** (insere todos os registros nas tabelas).
-5. Atualize o painel de *Schemas* para visualizar o banco `loja_cenario6` populado.
+5. Abra e execute o arquivo **`scripts_banco/relatorios_GRUPO6.sql`** (gera os 6 relatórios do cenário).
+6. Atualize o painel de *Schemas* para visualizar o banco `loja_cenario6` populado.
 
 #### Opção B — Via Linha de Comando (Terminal MySQL)
 Na raiz do repositório, execute os comandos abaixo informando seu usuário do MySQL (ex.: `root`):
@@ -113,6 +119,7 @@ Na raiz do repositório, execute os comandos abaixo informando seu usuário do M
 mysql -u root -p < scripts_banco/Bancos_GRUPO6.sql
 mysql -u root -p < scripts_banco/Foreign_key_GRUPO6.sql
 mysql -u root -p < scripts_banco/carga_dados_GRUPO6.sql
+mysql -u root -p -t < scripts_banco/relatorios_GRUPO6.sql
 ```
 
 ### Passo 3: Validar a Carga de Dados
@@ -135,7 +142,7 @@ UNION ALL SELECT 'item_venda', COUNT(*) FROM item_venda;
 
 ## 📊 Relatórios Gerenciais Contemplados pelo Cenário 6
 
-A base de dados está preparada para responder às 6 consultas estratégicas definidas no escopo do trabalho:
+As 6 consultas estratégicas definidas no escopo do trabalho estão implementadas em `scripts_banco/relatorios_GRUPO6.sql`:
 
 1. **Vendas por Estado (Último Mês):** total de unidades vendidas e faturamento bruto (R$) nos últimos 30 dias, agrupados por estado (`UF`) do endereço de entrega.
 2. **Melhores Clientes e Ticket Médio (Último Ano):** ranking dos 10 clientes com maior volume financeiro nos últimos 12 meses, exibindo valor total gasto e ticket médio por pedido.
