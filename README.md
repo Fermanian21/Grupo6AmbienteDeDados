@@ -74,8 +74,8 @@ Para viabilizar consultas analíticas realistas e testar todos os relatórios ex
 * **Tabelas Mães / Principais (40 a 50 registros por tabela):**
   * `produto` (40 registros, incluindo 8 SKUs com estoque abaixo do mínimo alvo para validar alertas de reposição)
   * `cliente` (45 registros)
-  * `cliente_telefone`, `endereco_cliente` e `foto_produto` (50 registros cada)
-  * `produto_fornecedor` (235 registros: todo produto comprado de um fornecedor consta como item que ele vende)
+  * `cliente_telefone`, `endereco_cliente`, `foto_produto` e `produto_fornecedor` (50 registros cada)
+  * Cada item de compra é de um produto que consta no catálogo (`produto_fornecedor`) do fornecedor daquela compra.
 * **Tabelas de Movimentação (1.000 registros totais):**
   * `compra` (150 registros) e `item_compra` (300 registros)
   * `venda` (200 registros) e `item_venda` (350 registros)
